@@ -83,7 +83,7 @@ const MyDocument = (props) => {
             </View>
           </div>
           <div style={styles.section}>
-            <View style={{ ...styles.view, width: '75vw' }}>
+            <View style={{ ...styles.view, width: '70vw', marginLeft: 10 }}>
               <DocsText size='sm' color={color.primary}>Visi:</DocsText>
               <DocsText size='sm'>Menjadi organisasi dosen yang profesional, nasionalis, dan islami.</DocsText>
               <DocsText size='sm' color={color.primary}>Misi:</DocsText>
