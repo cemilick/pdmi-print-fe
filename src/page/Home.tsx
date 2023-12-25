@@ -1,10 +1,11 @@
-import { Button, Input, ReactHookWrapper } from "alurkerja-ui";
+
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form";
 import { Documents } from "./Documents";
 import QRCode from "react-qr-code";
 import { color } from "../utils/constant";
 import { useMediaQuery } from "react-responsive";
+import { Button, Form } from "react-bootstrap";
 
 export const Home = () => {
 
@@ -31,32 +32,43 @@ export const Home = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 1224px)' })
     const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
 
+    const renderForm = () => (
+        <Form className="w-100" style={{ minWidth: '14vw' }}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Nama Lengkap:</Form.Label>
+                <Form.Control
+                    name="name"
+                    type="text"
+                    placeholder="Masukkan Nama Anda"
+                    onChange={(e) => setValue(e.target.name, e.target.value)}
+                />
+            </Form.Group>
+
+            <Form.Group className="mb-3 w-100" controlId="formBasicPassword">
+                <Form.Label>Universitas:</Form.Label>
+                <Form.Control
+                    name="university"
+                    type="text"
+                    placeholder="Masukkan Universitas Anda"
+                    onChange={(e) => setValue(e.target.name, e.target.value)}
+                />
+            </Form.Group>
+            <Button style={{ backgroundColor: color.primary }} onClick={generatePDF}>
+                Submit
+            </Button>
+        </Form>
+    )
+
     return (
         <div className="p-6 m-2 bg-white" style={
-            (isMobile || isPortrait) ? { display: 'block', textAlign: 'center' } :
+            (isMobile || isPortrait) ? { display: 'block', textAlign: 'center', alignContent: 'center', alignSelf: 'center' } :
                 { display: 'flex', flexDirection: 'row', alignItems: 'center' }
         }>
-            <div style={{ marginRight: 50 }}>
-                <ReactHookWrapper control={control} labelSize="lg" inline>
-                    <Input
-                        aria-label="Masukkan nama Anda"
-                        name="name"
-                        onChange={(e) => setValue(e.target.name, e.target.value)}
-                    />
-                    <Input
-                        aria-label="Masukkan Universitas Anda"
-                        name="university"
-                        onChange={(e) => setValue(e.target.name, e.target.value)}
-                    />
-                    <Button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={generatePDF}
-                    >
-                        Submit
-                    </Button>
-                </ReactHookWrapper>
-            </div>
+            {
+                (isMobile || isPortrait) ? (
+                    <center style={{ marginBottom: 10 }}> {renderForm()} </center>
+                ) : (<div style={{ marginRight: 50 }}>{renderForm()}</div>)
+            }
             {
                 isShow && (
                     <Documents width={(isMobile || isPortrait) ? '95vw' : '80vw'} name={data?.name} university={data?.university} />
