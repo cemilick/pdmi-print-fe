@@ -9,6 +9,7 @@ import { DocsText } from '../component/DocsText';
 import { Line } from '../component/Line';
 import _ from 'lodash';
 import QRCode from '../component/QRCode';
+import moment from 'moment';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -96,6 +97,8 @@ const MyDocument = (props) => {
                 foreground={color.primary}
                 width={150}
               />
+              <div style={{ marginBottom: 5 }}></div>
+              <DocsText size='xs'>Tanggal Kadaluwarsa: {moment(new Date()).add(6, 'month').format('DD-MM-YYYY')}</DocsText>
             </View>
           </div>
         </div>
