@@ -35,6 +35,8 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
+      - name: Install React & React DOM
+        run: yarn add react react-dom
       - name: Install dependencies
         run: yarn install
       - name: Build
