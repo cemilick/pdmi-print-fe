@@ -92,7 +92,7 @@ const MyDocument = (props) => {
             </View>
             <View style={{ ...styles.view, marginTop: 20, marginLeft: 15 }}>
               <QRCode
-                url='Hello World!'
+                url={`Saya ${fullname} merupakan anggota PDMI yang saat ini bekerja sebagai dosen di ${univ}`}
                 foreground={color.primary}
                 width={150}
               />
