@@ -12,7 +12,7 @@ import { Documents, Home } from "./page";
 
 const router = createBrowserRouter([
   {
-    path: "/pdmi-print-fe",
+    path: "/",
     element: <Home />,
   },
   {
