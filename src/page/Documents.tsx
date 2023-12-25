@@ -110,12 +110,13 @@ const MyDocument = (props) => {
 interface IDocuments {
   name?: string;
   university?: string;
+  width: any;
 }
 
 export const Documents: React.FC<IDocuments> = (props) => {
   return (
     <Container fluid className='p-0'>
-      <PDFViewer style={{ width: '80vw', height: '100vh' }}>
+      <PDFViewer style={{ width: props.width, height: '100vh' }}>
         <MyDocument name={props.name} university={props.university} />
       </PDFViewer>
     </Container>

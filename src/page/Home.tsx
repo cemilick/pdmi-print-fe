@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Documents } from "./Documents";
 import QRCode from "react-qr-code";
 import { color } from "../utils/constant";
+import { useMediaQuery } from "react-responsive";
 
 export const Home = () => {
 
@@ -27,8 +28,14 @@ export const Home = () => {
     }
 
 
+    const isMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+    const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
+
     return (
-        <div className="p-6 m-2 bg-white" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        <div className="p-6 m-2 bg-white" style={
+            (isMobile || isPortrait) ? { display: 'block', textAlign: 'center' } :
+                { display: 'flex', flexDirection: 'row', alignItems: 'center' }
+        }>
             <div style={{ marginRight: 50 }}>
                 <ReactHookWrapper control={control} labelSize="lg" inline>
                     <Input
@@ -52,7 +59,7 @@ export const Home = () => {
             </div>
             {
                 isShow && (
-                    <Documents name={data?.name} university={data?.university} />
+                    <Documents width={(isMobile || isPortrait) ? '95vw' : '80vw'} name={data?.name} university={data?.university} />
                 )
             }
 
